@@ -1,24 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Inter:wght@100..900&display=swap');
+:root {
+  --background: linear-gradient(90deg,rgba(13, 31, 47, 1) 0%, rgba(26, 58, 79, 1) 50%, rgba(45, 90, 123, 1) 100%);
+  --text: #E8E8E8;
+
+  --cells: #1F4A6F ;
+  --cellsBorder: #1F4A6F ;
+
+  --modalBackground: #0D1F2F ;
+
+  --btnBackground: linear-gradient(90deg,rgba(0, 229, 255, 1) 0%, rgba(0, 184, 204, 1) 78%); ;
+  --btnText: #0D1F2F ;
+}
+
+
+body{
+    background: var(--background);
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: var(--text);
+    font-family: "Patrick Hand",Arial, Helvetica, sans-serif;
+}
+
 .gameboard {
     position: relative;
     display: grid;
-    max-width: fit-content;
-    grid-template-columns: 200px 200px 200px;
-    grid-template-rows: 200px 200px 200px;
+    max-width: 600px;
+    aspect-ratio: 1 / 1;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     margin: 2rem auto;
     --line-top: 0;
     --line-left: 0;
     --line-width: 0;
     --line-rotate: 0deg;
+    
 }
 
 h1 {
     max-width: fit-content;
     margin: 1rem auto;
+    font-size: clamp(3rem, 2.286rem + 1.905vw, 4rem)
 }
 
 h2 {
     max-width: fit-content;
     margin: 0 auto;
+    font-size: clamp(2rem, 1.286rem + 1.905vw, 3rem);
 }
 
 .buttonDiv {
@@ -27,36 +54,59 @@ h2 {
     margin: 0 auto;
 }
 
+button {
+    color: var(--text);
+    background: none;
+    border: none;
+    padding: .7rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    border: 2px solid;
+    border-color: var(--text);
+}
+
+button:hover {
+    background-color: var(--text);
+    color: var(--cells);
+}
+
 .cell {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
+    background: #1A1A3E;
     cursor: pointer;
+    font-size: 4rem;
+    color: var(--text);
+}
+
+.cell.win-cell { 
+    background-color: #222250;
 }
 
 .cell:nth-of-type(2), .cell:nth-of-type(5), .cell:nth-of-type(8) {
-    border-left: 2px solid black;
-    border-right: 2px solid black;
+    border-left: 2px solid var(--cellsBorder);
+    border-right: 2px solid var(--cellsBorder);
 }
 
 .cell:nth-of-type(-n + 3) {
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid var(--cellsBorder);
 }
 
 .cell:nth-child(n+7) { 
-    border-top: 2px solid black; 
+    border-top: 2px solid var(--cellsBorder); 
 }
 
 
 .gameboard::after {
     content: "";
     position: absolute;
-    height: 6px;
+    height: 4px;
     width: var(--line-width);
     top: var(--line-top);
     left: var(--line-left);
-    background: rgb(77, 77, 77);
+    background: var(--text);
     border-radius: 5px;
     transform: rotate(var(--line-rotate));
     transform-origin: left center;
@@ -83,6 +133,15 @@ h2 {
 
 #winnerModalDiv.active { 
     visibility: visible; 
+}
+
+#winnerModal, #playersModal {
+    padding: 2rem 4rem;
+    border-radius: 7px;
+    font-size: 2rem;
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.8);
+    background: var(--modalBackground);
+    color: var(--text);
 }
 
 #playersModalDiv {
@@ -115,6 +174,12 @@ h2 {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+}
+
+@media(max-width:600px){
+    .gameboard::after {
+    display: none;
+    }
 }
 
 

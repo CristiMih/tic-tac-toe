@@ -124,13 +124,20 @@ const DisplayController = (() => {
 
   const updateTurnDisplay = () => {
     const current = Game.getCurrentPlayer();
-    title.textContent = `Este rândul lui ${current.name}`;
+    title.textContent = `${current.name}${current.name[current.name.length - 1] === "s" ? `` : `'s` } turn`;
     score.textContent = `${Game.player1.name}: ${Game.player1.score} - ${Game.player2.name}: ${Game.player2.score}`;
   };
 
   updateTurnDisplay();
 
+  const highlightWinningCells = (combo) => {
+    combo.forEach(index => {
+        cells[index].classList.add('win-cell');
+    });
+  };
+
   const drawWinLine = (combo) => {
+    highlightWinningCells(combo);
     boardElement.classList.add("hide-line");
     const positions = {
       "0,1,2": { top: "100px", left: "0", width: "580px", rotate: "0deg" },
@@ -161,7 +168,7 @@ const DisplayController = (() => {
   };
   const clearWinLine = () => {
     boardElement.classList.add("hide-line");
-
+    cells.forEach(cell => cell.classList.remove("win-cell"));
     boardElement.style.setProperty("--line-top", "0");
     boardElement.style.setProperty("--line-left", "0");
     boardElement.style.setProperty("--line-rotate", "0deg");
@@ -219,7 +226,8 @@ const playersModal = (() => {
     const name2 = document.getElementById("player2").value || "Player2";
 
     Game.setPlayers(name1, name2);
-
+    document.getElementById("player1").value = "";
+    document.getElementById("player2").value = '';
     close();
     DisplayController.updateTurnDisplay();
   });
