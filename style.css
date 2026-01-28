@@ -176,6 +176,12 @@ button:hover {
     gap: 1rem;
 }
 
+@media(max-width:720px){
+    label:nth-last-of-type {
+        pad-left: 100px;
+    }
+}
+
 @media(max-width:600px){
     .gameboard::after {
     display: none;
