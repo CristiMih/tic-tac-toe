@@ -167,7 +167,9 @@ button:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
+
 
 #playersForm {
     display: flex;
@@ -176,17 +178,20 @@ button:hover {
     gap: 1rem;
 }
 
-@media(max-width:720px){
-    label:nth-last-of-type {
-        pad-left: 100px;
-    }
-}
 
 @media(max-width:600px){
     .gameboard::after {
     display: none;
     }
 }
+
+@media(max-width:450px){
+    .input-row{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 
 
 
