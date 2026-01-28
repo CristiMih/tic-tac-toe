@@ -1,0 +1,47 @@
+.gameboard {
+    position: relative;
+    display: grid;
+    max-width: fit-content;
+    grid-template-columns: 200px 200px 200px;
+    grid-template-rows: 200px 200px 200px;
+    margin: 2rem auto;
+
+}
+
+h1 {
+    max-width: fit-content;
+    margin: 1rem auto;
+}
+
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.cell:nth-of-type(2), .cell:nth-of-type(5), .cell:nth-of-type(8) {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.cell:nth-of-type(-n + 3) {
+    border-bottom: 2px solid black;
+}
+
+.cell:nth-child(n+7) { 
+    border-top: 2px solid black; 
+}
+
+
+.gameboard::after {
+    content: "";
+    position: absolute;
+    height: 6px;
+    width: 0;
+    top: 0;
+    left: 0;
+    transform-origin: left center;
+    transition: width 0.4s ease;
+}
