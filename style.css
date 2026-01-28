@@ -5,12 +5,26 @@
     grid-template-columns: 200px 200px 200px;
     grid-template-rows: 200px 200px 200px;
     margin: 2rem auto;
-
+    --line-top: 0;
+    --line-left: 0;
+    --line-width: 0;
+    --line-rotate: 0deg;
 }
 
 h1 {
     max-width: fit-content;
     margin: 1rem auto;
+}
+
+h2 {
+    max-width: fit-content;
+    margin: 0 auto;
+}
+
+.buttonDiv {
+    width: fit-content;
+    padding-top: 1rem;
+    margin: 0 auto;
 }
 
 .cell {
@@ -39,9 +53,69 @@ h1 {
     content: "";
     position: absolute;
     height: 6px;
-    width: 0;
-    top: 0;
-    left: 0;
+    width: var(--line-width);
+    top: var(--line-top);
+    left: var(--line-left);
+    background: rgb(77, 77, 77);
+    border-radius: 5px;
+    transform: rotate(var(--line-rotate));
     transform-origin: left center;
     transition: width 0.4s ease;
 }
+
+.gameboard.hide-line::after { 
+    display: none; 
+}
+
+#winnerModalDiv {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    font-size: 24px;
+    transition: 0.3s ease;
+    z-index: 10;
+    visibility: hidden;
+}
+
+#winnerModalDiv.active { 
+    visibility: visible; 
+}
+
+#playersModalDiv {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    font-size: 24px;
+    transition: 0.3s ease;
+    z-index: 10;
+    visibility: hidden;
+}
+
+#playersModalDiv.active { 
+    visibility: visible; 
+}
+
+#playersModal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#playersForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+
+
